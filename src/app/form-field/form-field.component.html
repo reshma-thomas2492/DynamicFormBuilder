@@ -1,0 +1,26 @@
+<div [ngSwitch]="field.name" class="form-field-type">
+    <div *ngSwitchCase="'input'">
+        <div class="d-flex">
+            <label>{{field.label}} </label>
+            <div>
+                <img src='../../assets/icons/edit.svg' (click)="openCustomElement.emit(field.name)">
+                <img src='../../assets/icons/delete.svg' (click)="removeElement.emit(field.name)">
+            </div>
+        </div>
+        <input placeholder="{{ field.label }}">
+    </div>
+    <div *ngSwitchCase="'select'">
+        <label>{{field.label}}</label>
+        <select placeholder="Select Role" name="name">
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+    <div *ngSwitchCase="'radio'">
+        <label for="html">HTML</label>
+        <input type="radio" id="html" name="fav_language" value="HTML">
+    </div>
+    <div *ngSwitchCase="'checkbox'">
+        <input id="checkid2" type="checkbox" value="test" />
+        <label for="checkid2">testdata 2</label>
+    </div>
+</div>

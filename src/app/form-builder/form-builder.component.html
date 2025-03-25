@@ -1,0 +1,35 @@
+<div class="header">
+    <img class="back-icon" src="../../assets/icons/back.svg" (click)="back()">
+    Form Builder - {{dynamicForm.formName}}
+</div>
+<div class="form-viewer">
+    <div class="form-controls" cdkDropList id="formBuilder" [cdkDropListData]="controls"
+        [cdkDropListConnectedTo]="['dropZone']" (cdkDropListDropped)="drop($event)" cdkDropListSortingDisabled>
+        <div *ngFor="let field of controls" cdkDrag [cdkDragData]="field" class="draggable-field">
+            {{field.label}}
+        </div>
+    </div>
+    <div *ngIf="dynamicForm" class="drag-drop" cdkDropList id="dropZone" [cdkDropListData]="dynamicForm?.formControls"
+        [cdkDropListConnectedTo]="['formBuilder']" (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let field of dynamicForm?.formControls; let i=index;" class="dropped-item" cdkDrag>
+            <app-form-field [field]="field" (openCustomElement)="openCustomElement(field,i)"
+                (removeElement)="removeElement(field,i)"></app-form-field>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <button (click)="reset()">Clear</button>
+    <button (click)="saveForm()">Save</button>
+</div>
+
+<app-modal *ngIf="showCustomElement" [title]="'Customize Form Element'">
+    <label>Label</label>
+    <input placeholder="Enter Label" [(ngModel)]="customElement.label">
+    <label>Placeholder</label>
+    <input placeholder="Enter Placeholder" [value]="customElement.helptext">
+
+    <ng-container footer>
+        <button (click)="updateElement()">Update</button>
+        <button class="cancel" (click)="showCustomElement = false">Cancel</button>
+    </ng-container>
+</app-modal>

@@ -1,0 +1,12 @@
+<div class="header">
+    <img class="back-icon" src="../../assets/icons/back.svg" (click)="back()">
+    Preview - {{formName}}
+</div>
+<div class="form-viewer">
+    <form [formGroup]="dynamicForm">
+        <div *ngFor="let control of form.formControls" class="form-control">
+            <label>{{control.label}}</label>
+            <input [type]="control.type" [formControlName]="control.name">
+        </div>
+    </form>
+</div>

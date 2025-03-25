@@ -1,0 +1,18 @@
+[
+    {
+        "type": "text",
+        "label": "Input - Single Line",
+        "name": "input",
+        "validations": [
+        ],
+        "helpText": ""
+    },
+    {
+        "type": "select",
+        "label": "Select - Dropdown",
+        "name": "select",
+        "validations": [
+        ],
+        "helpText": ""
+    }
+]

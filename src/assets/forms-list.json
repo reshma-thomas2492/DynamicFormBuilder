@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "formName": "Test1",
+        "formControls": [
+            {
+                "type": "text",
+                "label": "Name",
+                "name": "name",
+                "value": "Reshma K Thomas",
+                "validations": [
+                    {
+                        "name": "required",
+                        "validator": "required",
+                        "message": "Name is required"
+                    }
+                ],
+                "helpText": ""
+            },
+            {          "type": "text",
+                "label": "Job",
+                "name": "job",
+                "value": "IT Engineer",
+                "validations": [],
+                "helpText": ""
+            }
+        ]
+    }
+]

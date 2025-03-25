@@ -1,0 +1,44 @@
+<div>
+    <div class="header">
+        Dynamic Forms List
+    </div>
+
+
+    <div class="content">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>
+                    Form Name
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            <tr *ngFor="let form of formsList">
+                <td>{{form.id}}</td>
+                <td>{{form.formName}}</td>
+                <td class="actions">
+                    <button (click)="openFormViewer(form)">
+                       Preview</button>
+                    <button (click)="editForm(form)"><img src="../../assets/icons/edit.svg">Edit
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <button (click)="showCreateModal = true">Create New Form</button>
+    </div>
+    <app-modal *ngIf="showCreateModal" [title]="'Create a new form'">
+        <input placeholder="Enter Form Name" #newForm required
+            (keyup)="newForm.value.trim()!=''? showError=false:showError=true">
+        <div class="errorMsg" *ngIf="showError">Please enter a form name to proceed.</div>
+
+        <ng-container footer>
+            <button (click)="createForm(newForm.value)">Create</button>
+            <button class="cancel" (click)="showCreateModal = false">Cancel</button>
+        </ng-container>
+    </app-modal>
+</div>

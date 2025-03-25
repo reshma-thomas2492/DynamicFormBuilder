@@ -1,0 +1,22 @@
+.form-field-type {
+
+    margin: 10px;
+
+    div {
+        margin: 5px;
+    }
+
+    select,
+    input {
+        padding: 15px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        // width: 100%;
+        outline: none;
+    }
+}
+.d-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
