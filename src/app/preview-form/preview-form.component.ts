@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Location } from "@angular/common";
 import { AppService } from '../app.service';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-preview-form',
@@ -10,34 +10,52 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./preview-form.component.scss']
 })
 export class PreviewFormComponent {
+  @Input()
+  isReadOnly = false;
+  @Output()
+  closeModal = new EventEmitter();
   dynamicForm!: FormGroup;
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private service: AppService,
     private fb: FormBuilder) { }
 
-    @Input()
-    form!:any;
+  @Input()
+  form!: any;
 
   ngOnInit() {
 
-    this.service.formListJSON.subscribe((data: any) => {
-      let formGroup: any = {};
+    let formGroup: any = {};
 
-      this.form.formControls.forEach((control: any) => {
-        formGroup[control.name] = [control.value || '',[ Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(3)]];
-        
-      });
-      this.dynamicForm = this.fb.group(formGroup);
+    this.form.formControls.forEach((control: any) => {
 
-    })
+      formGroup[control.name] = [control.value || '', [Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(3)]];
+
+    });
+    this.dynamicForm = this.fb.group(formGroup);
+    this.isReadOnly ? this.dynamicForm.disable() : null;
+
+
 
   }
 
+
   back() {
     this.location.back();
+  }
+
+  save() {
+    let date = new Date();
+    let form = {
+      id: this.form.formName,
+      data: this.dynamicForm.value,
+      createdOn: date.toLocaleString()
+    }
+    this.service.addForm(form).subscribe((data: any) => console.log(data));
+    this.closeModal.emit();
+    this.router.navigate(['/forms']);
   }
 }

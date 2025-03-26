@@ -11,13 +11,13 @@ export class ListComponent {
   formsList: any;
   showCreateModal: boolean = false;
   showError: boolean = false;
-  showPreview: boolean = false;
-  previewForm:any;
+  showFormSubmit: boolean = false;
+  formSubmit: any;
   constructor(private router: Router, private service: AppService) {
   }
 
   ngOnInit() {
-    this.service.formListJSON.subscribe((data: any) => {
+    this.service.formTemplatesJSON.subscribe((data: any) => {
       this.formsList = data;
     })
   }
@@ -28,7 +28,7 @@ export class ListComponent {
     else {
       this.showError = false;
       this.showCreateModal = false;
-      this.service.addForm({
+      this.service.addFormTemplate({
         "formName": value,
         "formControls": []
       }).subscribe((data: any) => {
@@ -38,10 +38,15 @@ export class ListComponent {
     }
 
   }
-  openFormViewer(form: any) {
-    this.showPreview = true;
-    this.previewForm=form;
+  openFormList(){
+    this.router.navigate(['/forms'])
   }
+
+  openFormViewer(form: any) {
+    this.showFormSubmit = true;
+    this.formSubmit = form;
+  }
+
   editForm(form: any) {
     this.router.navigate(['/edit', form.id])
   }

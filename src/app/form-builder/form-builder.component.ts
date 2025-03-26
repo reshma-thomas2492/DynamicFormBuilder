@@ -32,7 +32,7 @@ export class FormBuilderComponent {
     this.service.formControlsJSON.subscribe((data: any) => {
       this.controls = data;
     })
-    this.service.formListJSON.subscribe((data: any) => {
+    this.service.formTemplatesJSON.subscribe((data: any) => {
       this.dynamicForm = data.filter((form: any) => form.id == this.formId)[0];
     });
 
@@ -59,7 +59,7 @@ export class FormBuilderComponent {
   }
 
   saveForm() {
-    this.service.updateForm(this.dynamicForm, this.dynamicForm.id).subscribe((data: any) => console.log(data));
+    this.service.updateFormTemplate(this.dynamicForm, this.dynamicForm.id).subscribe((data: any) => console.log(data));
     this.back();
   }
 

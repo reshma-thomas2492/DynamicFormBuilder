@@ -2,6 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-header">
             <div>{{ title }}</div>
+            <div class="close" (click)="this.closeModal.emit()"><img src="../../assets/icons/close.svg"></div>
         </div>
         <div class="modal-content">
             <ng-content></ng-content>

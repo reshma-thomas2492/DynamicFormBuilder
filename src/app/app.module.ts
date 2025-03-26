@@ -15,6 +15,7 @@ import { FormFieldComponent } from './form-field/form-field.component';
 import { ModalComponent } from './modal/modal.component';
 import { PreviewFormComponent } from './preview-form/preview-form.component';
 import { FormBuilderComponent } from './form-builder/form-builder.component';
+import { FormsListComponent } from './forms-list/forms-list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormBuilderComponent } from './form-builder/form-builder.component';
     ModalComponent,
     PreviewFormComponent,
     FormBuilderComponent,
+    FormsListComponent,
   ],
   imports: [
     BrowserModule,

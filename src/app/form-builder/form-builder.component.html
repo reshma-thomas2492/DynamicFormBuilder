@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" style="justify-content: flex-start;">
     <img class="back-icon" src="../../assets/icons/back.svg" (click)="back()">
     Form Builder - {{dynamicForm?.formName}}
 </div>
@@ -11,6 +11,8 @@
     </div>
     <div *ngIf="dynamicForm" class="drag-drop" cdkDropList id="dropZone" [cdkDropListData]="dynamicForm?.formControls"
         [cdkDropListConnectedTo]="['formBuilder']" (cdkDropListDropped)="drop($event)">
+        <div *ngIf="dynamicForm?.formControls.length==0" style="text-align: center;"><i>Drag and Drop controls here</i></div>
+
         <div *ngFor="let field of dynamicForm?.formControls; let i=index;" class="dropped-item" cdkDrag>
             <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
             <app-form-field [field]="field" (openCustomElement)="openCustomElement(field,i)"
@@ -24,9 +26,12 @@
     <button (click)="saveForm()">Save</button>
 </div>
 
-<app-modal *ngIf="showCustomElement" [title]="'Customize Form Element'">
+<app-modal *ngIf="showCustomElement" [title]="'Customize Form Element'" (closeModal)="showCustomElement=false">
     <div class="custom-element">
-        <ng-container *ngIf="customElement.name!='button'">
+        <ng-container>
+            <div> <label>Control Name</label>
+                <input [(ngModel)]="customElement.name">
+            </div>
             <div> <label>Label Text</label>
                 <input [(ngModel)]="customElement.label">
             </div>
@@ -37,7 +42,7 @@
                 <input id="isRequired" type="checkbox" value='true' [(ngModel)]="customElement.validations.required" />
             </div>
         </ng-container>
-        <ng-container *ngIf="customElement.name=='input'">
+        <ng-container *ngIf="customElement.type=='input'">
             <div class="validations">
                 <label>Min-Length</label>
                 <input type="number" min="0" [(ngModel)]="customElement.validations.minLength">
@@ -47,27 +52,18 @@
                 <input type="number" min="0" [(ngModel)]="customElement.validations.maxLength">
             </div>
         </ng-container>
-        <ng-container *ngIf="customElement.name=='select'">
+        <ng-container *ngIf="customElement.type=='select'">
             <div class="validations">
                 <label>Options</label>
                 <textarea placeholder="Enter comma separated values" [(ngModel)]="customElement.options"></textarea>
             </div>
         </ng-container>
-        <ng-container *ngIf="customElement.name=='button'">
-            <div> <label>Button Label</label>
-                <input [(ngModel)]="customElement.label">
-            </div>
-        </ng-container>
     </div>
     <ng-container footer>
         <button (click)="updateElement()">Update</button>
-        <button class="cancel outline" (click)="showCustomElement = false">Cancel</button>
     </ng-container>
 </app-modal>
 
-<app-modal *ngIf="showPreview" [title]="'Preview Form'">
-    <app-preview-form [form]="dynamicForm"></app-preview-form>
-    <ng-container footer>
-        <button class="cancel outline" (click)="showPreview = false">Cancel</button>
-    </ng-container>
+<app-modal *ngIf="showPreview" [title]="'Preview Form'" (closeModal)="showPreview=false">
+    <app-preview-form [form]="dynamicForm" [isReadOnly]="true"></app-preview-form>
 </app-modal>

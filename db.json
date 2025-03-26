@@ -1,17 +1,11 @@
 {
-  "forms-list": [
-    {
-      "id": "2c76",
-      "formName": "Login Form",
-      "formControls": []
-    }
+  "form-templates": [
   ],
   "form-controls": [
     {
       "control": "",
-      "type": "text",
+      "type": "input",
       "label": "Input - Single Line",
-      "name": "input",
       "validations": {
         "required": false,
         "minLength": null,
@@ -22,7 +16,7 @@
     {
       "control": "",
       "label": "Input - Multi Line",
-      "name": "textarea",
+      "type": "textarea",
       "validations": {
         "required": false,
         "minLength": null,
@@ -34,20 +28,12 @@
       "control": "",
       "type": "select",
       "label": "Select - Dropdown",
-      "name": "select",
       "options": "",
       "validations": {
         "required": false
       },
       "helpText": ""
-    },
-    {
-      "control": "",
-      "type": "button",
-      "label": "Button",
-      "name": "button",
-      "validations": {},
-      "helpText": ""
     }
-  ]
+  ],
+  "form-list": []
 }

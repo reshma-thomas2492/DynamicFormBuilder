@@ -1,0 +1,23 @@
+<div>
+    <div class="header">
+        Form List
+        <span (click)="openTemplatesList()">
+            View Template</span>
+    </div>
+
+    <div class="content">
+        <div class="form-list">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Created On</th>
+                </tr>
+                <tr *ngFor="let form of formsList">
+                    <td class="link" (click)="showFormData(form)">{{form.id}}</td>
+                    <td>{{form.createdOn}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-data">{{data}}</div>
+        <div class="no-data" *ngIf="formsList?.length==0">No Data Available</div>
+    </div>

@@ -1,6 +1,8 @@
 <div>
     <div class="header">
-        Dynamic Forms List
+        Dynamic Form Template List
+        <span (click)="openFormList()">
+            View Submitted Forms</span>
     </div>
 
     <div class="content">
@@ -18,33 +20,30 @@
                 <td>{{form.id}}</td>
                 <td>{{form.formName}}</td>
                 <td class="actions">
-                    <button (click)="openFormViewer(form)">
-                        Preview</button>
                     <button (click)="editForm(form)"><img src="../../assets/icons/edit.svg">Edit Template
                     </button>
+                    <button (click)="openFormViewer(form)">
+                        Submit</button>
                 </td>
             </tr>
         </table>
-        <div class="no-data" *ngIf="formsList.length==0">No Data Available</div>
+        <div class="no-data" *ngIf="formsList?.length==0">No Data Available</div>
     </div>
 
     <div class="footer">
         <button (click)="showCreateModal = true">Create New Form</button>
     </div>
-    <app-modal *ngIf="showCreateModal" [title]="'Create a new form'">
+    <app-modal *ngIf="showCreateModal" [title]="'Create a new form'" (closeModal)="showCreateModal=false">
         <input placeholder="Enter Form Name" #newForm required
             (keyup)="newForm.value.trim()!=''? showError=false:showError=true">
         <div class="errorMsg" *ngIf="showError">Please enter a form name to proceed.</div>
 
         <ng-container footer>
             <button (click)="createForm(newForm.value)">Create</button>
-            <button class="cancel" (click)="showCreateModal = false">Cancel</button>
         </ng-container>
     </app-modal>
 </div>
-<app-modal *ngIf="showPreview" [title]="'Preview Form'">
-    <app-preview-form [form]="previewForm"></app-preview-form>
-    <ng-container footer>
-        <button class="cancel outline" (click)="showPreview = false">Cancel</button>
-    </ng-container>
+
+<app-modal *ngIf="showFormSubmit" [title]="'Form Submission'" (closeModal)="showFormSubmit=false">
+    <app-preview-form [form]="formSubmit" [isReadOnly]="false" (closeModal)="showFormSubmit=false"></app-preview-form>
 </app-modal>

@@ -1,23 +1,20 @@
 <div class="form-viewer">
     <form *ngIf="dynamicForm" [formGroup]="dynamicForm">
         <div *ngFor="let control of form?.formControls" class="form-control">
-            <ng-container *ngIf="control.name=='input'">
+            <ng-container *ngIf="control.type=='input'">
                 <label [ngClass]="{'required':control.validations.required}">{{control.label}}</label>
                 <input [type]="control.type" [formControlName]="control?.name" [placeholder]="control.helpText">
             </ng-container>
-            <ng-container *ngIf="control.name=='select'">
+            <ng-container *ngIf="control.type=='select'">
                 <label [ngClass]="{'required':control.validations.required}">{{control.label}}</label>
                 <select [formControlName]="control?.name">
                     <option *ngFor="let option of control?.options.split(',')">{{option}}</option>
                 </select> </ng-container>
-            <ng-container *ngIf="control.name=='textarea'">
+            <ng-container *ngIf="control.type=='textarea'">
                 <label [ngClass]="{'required':control.validations.required}">{{control.label}}</label>
                 <textarea [placeholder]="control.helpText" [formControlName]="control?.name"></textarea>
             </ng-container>
-            <ng-container *ngIf="control.name=='button'">
-                <button>{{control.label}}</button>
-            </ng-container>
-
         </div>
+        <button *ngIf="!isReadOnly" (click)="save()">Submit</button>
     </form>
 </div>

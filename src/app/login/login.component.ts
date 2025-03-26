@@ -24,7 +24,7 @@ export class LoginComponent {
   }
     submit(){
     if(this.loginForm.valid){
-      this.router.navigate(['/list'])
+      this.router.navigate(['/templates'])
     }
  
     }

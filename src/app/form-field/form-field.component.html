@@ -1,4 +1,4 @@
-<div [ngSwitch]="field.name" class="form-field-type">
+<div [ngSwitch]="field.type" class="form-field-type">
     <div *ngSwitchCase="'input'">
         <div class="d-flex">
             <label>{{field.label}} </label>
@@ -24,10 +24,6 @@
         <input id="checkid2" type="checkbox" value="test" />
         <label for="checkid2">testdata 2</label>
     </div>
-    <div *ngSwitchCase="'button'">
-        <button>{{field.label}}</button>
-
-    </div>
     <div class="d-flex action-icons">
         <div class="field-info">Required is {{field.validations.required}}</div>
         <div class="field-info" *ngIf="field.validations.maxLength">, MaxLength is
@@ -37,8 +33,8 @@
             {{field.validations.minLength}}
         </div>
         <div>
-            <img src='../../assets/icons/edit.svg' (click)="openCustomElement.emit(field.name)">
-            <img src='../../assets/icons/delete.svg' (click)="removeElement.emit(field.name)">
+            <img src='../../assets/icons/edit.svg' (click)="openCustomElement.emit(field.type)">
+            <img src='../../assets/icons/delete.svg' (click)="removeElement.emit(field.type)">
         </div>
 
     </div>

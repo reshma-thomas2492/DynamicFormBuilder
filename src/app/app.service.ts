@@ -19,22 +19,32 @@ export class AppService {
   }
 
   private formControlsUrl = "http://localhost:3000/form-controls";
-  private formsListUrl = "http://localhost:3000/forms-list";
+  private formsTemplatesUrl = "http://localhost:3000/form-templates";
+  private formsListUrl = "http://localhost:3000/form-list";
+
   get formControlsJSON(): Observable<any> {
     return this.http.get(this.formControlsUrl)
   }
 
-  get formListJSON(): Observable<any> {
+  get formTemplatesJSON(): Observable<any> {
+    return this.http.get(this.formsTemplatesUrl)
+  }
+
+  get formsListJSON(): Observable<any> {
     return this.http.get(this.formsListUrl)
+  }
+
+  addFormTemplate(form: any): Observable<any> {
+    return this.http.post(this.formsTemplatesUrl, form)
+  }
+
+  updateFormTemplate(form: any, id: string): Observable<any> {
+    let url = this.formsTemplatesUrl + '/' + id;
+    return this.http.put(url, form)
   }
 
   addForm(form: any): Observable<any> {
     return this.http.post(this.formsListUrl, form)
-  }
-
-  updateForm(form: any, id: string): Observable<any> {
-    let url = this.formsListUrl + '/' + id;
-    return this.http.put(url, form)
   }
 
 }
