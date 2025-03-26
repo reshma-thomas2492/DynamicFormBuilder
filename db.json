@@ -1,58 +1,53 @@
 {
   "forms-list": [
     {
-      "id": "62dc",
-      "formName": "Form1",
-      "formControls": [
-        {
-          "type": "text",
-          "label": "Input - Single Line",
-          "name": "input",
-          "validations": [],
-          "helpText": "",
-          "id": "a54d"
-        },
-        {
-          "type": "select",
-          "label": "Select - Dropdown",
-          "name": "select",
-          "validations": [],
-          "helpText": "",
-          "id": "a6a2"
-        }
-      ]
-    },
-    {
-      "id": "ab37",
-      "formName": "Form2",
-      "formControls": [
-        {
-          "type": "text",
-          "label": "Input - Single Line",
-          "name": "input",
-          "validations": [],
-          "helpText": "",
-          "id": "a54d"
-        }
-      ]
+      "id": "2c76",
+      "formName": "Login Form",
+      "formControls": []
     }
   ],
   "form-controls": [
     {
+      "control": "",
       "type": "text",
       "label": "Input - Single Line",
       "name": "input",
-      "validations": [],
-      "helpText": "",
-      "id": "a54d"
+      "validations": {
+        "required": false,
+        "minLength": null,
+        "maxLength": null
+      },
+      "helpText": ""
     },
     {
+      "control": "",
+      "label": "Input - Multi Line",
+      "name": "textarea",
+      "validations": {
+        "required": false,
+        "minLength": null,
+        "maxLength": null
+      },
+      "helpText": ""
+    },
+    {
+      "control": "",
       "type": "select",
       "label": "Select - Dropdown",
       "name": "select",
-      "validations": [],
-      "helpText": "",
-      "id": "a6a2"
+      "options": "",
+      "validations": {
+        "required": false
+      },
+      "helpText": ""
+    },
+    {
+      "control": "",
+      "type": "button",
+      "label": "Button",
+      "name": "button",
+      "validations": {},
+      "helpText": ""
     }
   ]
 }

@@ -2,12 +2,8 @@
 
     margin: 10px;
 
-    div {
-        margin: 5px;
-    }
-
     select,
-    input {
+    input,textarea {
         padding: 15px;
         border: 1px solid #ccc;
         box-sizing: border-box;
@@ -15,8 +11,22 @@
         outline: none;
     }
 }
-.d-flex{
+
+.d-flex {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+}
+
+.field-info {
+    color: blueviolet;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.action-icons {
+    justify-content: flex-end;
+
+    img {
+        margin: 0 5px;
+    }
 }

@@ -3,7 +3,6 @@
         Dynamic Forms List
     </div>
 
-
     <div class="content">
         <table>
             <tr>
@@ -20,12 +19,13 @@
                 <td>{{form.formName}}</td>
                 <td class="actions">
                     <button (click)="openFormViewer(form)">
-                       Preview</button>
-                    <button (click)="editForm(form)"><img src="../../assets/icons/edit.svg">Edit
+                        Preview</button>
+                    <button (click)="editForm(form)"><img src="../../assets/icons/edit.svg">Edit Template
                     </button>
                 </td>
             </tr>
         </table>
+        <div class="no-data" *ngIf="formsList.length==0">No Data Available</div>
     </div>
 
     <div class="footer">
@@ -42,3 +42,9 @@
         </ng-container>
     </app-modal>
 </div>
+<app-modal *ngIf="showPreview" [title]="'Preview Form'">
+    <app-preview-form [form]="previewForm"></app-preview-form>
+    <ng-container footer>
+        <button class="cancel outline" (click)="showPreview = false">Cancel</button>
+    </ng-container>
+</app-modal>

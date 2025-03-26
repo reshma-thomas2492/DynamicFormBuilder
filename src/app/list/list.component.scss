@@ -18,8 +18,18 @@ table {
             height: 25px;
             text-align: left;
             padding: 0px 10px;
-            background-color: orange;
+            background-color: rgb(50, 77, 77);
+            font-weight: 500;
             color: #FFFFFF;
+            &:first-child{
+                width: 10vw;
+            }
+            &:last-child{
+                width: 12vw;
+                @media screen and (min-width:640px){
+                    width: 20vw;
+                }
+            }
         }
 
         td {
@@ -28,24 +38,26 @@ table {
             &.actions {
                 button {
                     margin: 0 5px;
-                    height: 25px;
-                    line-height: 25px;
+                    height: 20px;
+                    line-height: 20px;
                     padding: 0px 5px;
                     color: inherit;
                     background-color: #ffffff;
                     border: solid 1px black;
                     font-weight: 100;
+                    font-style: italic;
+                    &:hover{
+                        background-color: orange;
+                    }
                 }
             }
         }
     }
 }
 
-.header {
-    padding: 10px;
-    font-size: large;
-    font-weight: bold;
+.no-data{
     text-align: center;
+    color:#000000;
 }
 
 .content {

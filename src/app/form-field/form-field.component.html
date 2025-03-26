@@ -2,18 +2,19 @@
     <div *ngSwitchCase="'input'">
         <div class="d-flex">
             <label>{{field.label}} </label>
-            <div>
-                <img src='../../assets/icons/edit.svg' (click)="openCustomElement.emit(field.name)">
-                <img src='../../assets/icons/delete.svg' (click)="removeElement.emit(field.name)">
-            </div>
         </div>
-        <input placeholder="{{ field.label }}">
+        <input placeholder="{{ field.helpText }}" [attr.maxlength]="field.validations.maxLength">
+
     </div>
     <div *ngSwitchCase="'select'">
         <label>{{field.label}}</label>
-        <select placeholder="Select Role" name="name">
-            <option value="admin">Admin</option>
+        <select>
+            <option *ngFor="let option of field?.options.split(',')">{{option}}</option>
         </select>
+    </div>
+    <div *ngSwitchCase="'textarea'">
+        <label>{{field.label}}</label>
+        <textarea placeholder="{{ field.helpText }}"></textarea>
     </div>
     <div *ngSwitchCase="'radio'">
         <label for="html">HTML</label>
@@ -22,5 +23,23 @@
     <div *ngSwitchCase="'checkbox'">
         <input id="checkid2" type="checkbox" value="test" />
         <label for="checkid2">testdata 2</label>
+    </div>
+    <div *ngSwitchCase="'button'">
+        <button>{{field.label}}</button>
+
+    </div>
+    <div class="d-flex action-icons">
+        <div class="field-info">Required is {{field.validations.required}}</div>
+        <div class="field-info" *ngIf="field.validations.maxLength">, MaxLength is
+            {{field.validations.maxLength}}
+        </div>
+        <div class="field-info" *ngIf="field.validations.minLength">, MinLength is
+            {{field.validations.minLength}}
+        </div>
+        <div>
+            <img src='../../assets/icons/edit.svg' (click)="openCustomElement.emit(field.name)">
+            <img src='../../assets/icons/delete.svg' (click)="removeElement.emit(field.name)">
+        </div>
+
     </div>
 </div>

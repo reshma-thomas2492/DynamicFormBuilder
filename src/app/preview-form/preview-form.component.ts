@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Location } from "@angular/common";
 import { AppService } from '../app.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-preview-form',
@@ -10,26 +10,26 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./preview-form.component.scss']
 })
 export class PreviewFormComponent {
-  formName!: string;
   dynamicForm!: FormGroup;
-  form!: any;
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private service: AppService,
     private fb: FormBuilder) { }
 
+    @Input()
+    form!:any;
+
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.formName = params['name'];
-    });
 
-    this.service.currentForm.subscribe((data: any) => {
-      this.form = data;
-
+    this.service.formListJSON.subscribe((data: any) => {
       let formGroup: any = {};
+
       this.form.formControls.forEach((control: any) => {
-        formGroup[control.name] = [control.value || ''];
+        formGroup[control.name] = [control.value || '',[ Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(3)]];
+        
       });
       this.dynamicForm = this.fb.group(formGroup);
 

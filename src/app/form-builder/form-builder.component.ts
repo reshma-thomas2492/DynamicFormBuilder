@@ -15,6 +15,7 @@ export class FormBuilderComponent {
   droppedFields: any[] = [];
   formId: string = '';
   showCustomElement: boolean = false;
+  showPreview: boolean = false;
   dynamicForm: any;
   customElement: any;
   customElementIndex = -1;
@@ -48,6 +49,8 @@ export class FormBuilderComponent {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      console.log(event.item)
+      this.openCustomElement(event.item.data, event.currentIndex)
     }
   }
 

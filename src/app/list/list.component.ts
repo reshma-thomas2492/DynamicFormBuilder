@@ -11,7 +11,8 @@ export class ListComponent {
   formsList: any;
   showCreateModal: boolean = false;
   showError: boolean = false;
-  private _jsonURL = './assets/forms-list.json'
+  showPreview: boolean = false;
+  previewForm:any;
   constructor(private router: Router, private service: AppService) {
   }
 
@@ -37,12 +38,11 @@ export class ListComponent {
     }
 
   }
-
   openFormViewer(form: any) {
-    // this.service.changeFormData(form);
-    this.router.navigate(['preview', form.id])
+    this.showPreview = true;
+    this.previewForm=form;
   }
-  editForm(form: any){
+  editForm(form: any) {
     this.router.navigate(['/edit', form.id])
   }
 }
