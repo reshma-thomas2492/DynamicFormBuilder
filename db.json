@@ -1,5 +1,61 @@
 {
+  "user-roles": [
+    {
+      "role": "Admin",
+      "isEditable": true
+    },
+    {
+      "role": "User",
+      "isEditable": false
+    }
+  ],
   "form-templates": [
+    {
+      "id": "0691",
+      "formName": "Form1",
+      "formControls": [
+        {
+          "control": "",
+          "type": "input",
+          "label": "Input - Single Line",
+          "validations": {
+            "required": true,
+            "minLength": 2,
+            "maxLength": 5
+          },
+          "helpText": "",
+          "name": "UserName"
+        },
+        {
+          "control": "",
+          "type": "input",
+          "label": "Input - Single Line",
+          "validations": {
+            "required": false,
+            "minLength": null,
+            "maxLength": null
+          },
+          "helpText": ""
+        }
+      ]
+    },
+    {
+      "id": "eed8",
+      "formName": "Form2",
+      "formControls": [
+        {
+          "control": "",
+          "type": "input",
+          "label": "Input - Single Line",
+          "validations": {
+            "required": false,
+            "minLength": null,
+            "maxLength": null
+          },
+          "helpText": ""
+        }
+      ]
+    }
   ],
   "form-controls": [
     {
@@ -33,7 +89,115 @@
         "required": false
       },
       "helpText": ""
+    },
+    {
+      "control": "",
+      "type": "checkbox",
+      "label": "Checkbox Group",
+      "items": [
+        {
+          "name": "Checkbox name",
+          "value": false
+        }
+      ],
+      "validations": {
+        "required": false
+      },
+      "helpText": ""
     }
   ],
-  "form-list": []
+  "form-list": [
+    {
+      "id": "Form2",
+      "data": {
+        "Pet": [
+          {
+            "Cat": ""
+          },
+          {
+            "Dog": ""
+          }
+        ]
+      },
+      "createdOn": "3/27/2025, 3:51:18 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": ""
+      },
+      "createdOn": "3/27/2025, 3:56:53 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": ""
+      },
+      "createdOn": "3/27/2025, 3:58:44 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "sss",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:11:58 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "sas",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:14:17 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "s",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:15:20 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "s",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:17:17 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "s",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:18:13 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "s",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:18:53 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "aa",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:19:19 PM"
+    },
+    {
+      "id": "Form1",
+      "data": {
+        "UserName": "xx",
+        "undefined": ""
+      },
+      "createdOn": "3/27/2025, 5:22:25 PM"
+    }
+  ]
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-login',
@@ -10,23 +11,30 @@ import { Router } from '@angular/router';
 
 export class LoginComponent {
 
-  loginForm!:FormGroup;
+  loginForm!: FormGroup;
+  userRoles: any[] = [];
 
-  constructor(private router:Router){
+  constructor(private router: Router, private service: AppService) {
 
   }
-  ngOnInit(){
+  ngOnInit() {
+
+    this.service.userRoles.subscribe((data: any) => {
+      this.userRoles = data;
+    })
     this.loginForm = new FormGroup({
-      role : new FormControl('admin',[  Validators.required ]),
-      password : new FormControl(null,[  Validators.required ])
+      role: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required])
 
     })
   }
-    submit(){
-    if(this.loginForm.valid){
+  submit(role: any) {
+    if (this.loginForm.valid) {
       this.router.navigate(['/templates'])
     }
- 
-    }
-  
+    console.log(role)
+    //Set current user role
+    this.service.setUserRole(role == 'true' ? true : false)
+  }
+
 }

@@ -7,7 +7,8 @@ import { FormBuilderComponent } from './form-builder/form-builder.component';
 import { FormsListComponent } from './forms-list/forms-list.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: "full" },
+  { path: 'login', component: LoginComponent },
   { path: 'templates', component: ListComponent },
   { path: 'forms', component: FormsListComponent },
   { path: 'edit/:id', component: FormBuilderComponent },

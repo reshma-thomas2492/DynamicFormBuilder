@@ -6,21 +6,28 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
-  private formData = new BehaviorSubject<any>(null);
-  currentForm = this.formData.asObservable();
 
   constructor(private http: HttpClient) {
-
-
   }
 
-  changeFormData(data: any) {
-    this.formData.next(data);
+  private userRole = new BehaviorSubject('');
+
+  setUserRole(role: any) {
+    this.userRole.next(role);
   }
 
+  getUserRole() {
+    return this.userRole.asObservable();
+  }
+
+  private userRolesUrl = "http://localhost:3000/user-roles";
   private formControlsUrl = "http://localhost:3000/form-controls";
   private formsTemplatesUrl = "http://localhost:3000/form-templates";
   private formsListUrl = "http://localhost:3000/form-list";
+
+  get userRoles(): Observable<any> {
+    return this.http.get(this.userRolesUrl)
+  }
 
   get formControlsJSON(): Observable<any> {
     return this.http.get(this.formControlsUrl)

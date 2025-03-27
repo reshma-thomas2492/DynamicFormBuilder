@@ -20,7 +20,8 @@
                 <td>{{form.id}}</td>
                 <td>{{form.formName}}</td>
                 <td class="actions">
-                    <button (click)="editForm(form)"><img src="../../assets/icons/edit.svg">Edit Template
+                    <button *ngIf="isAdmin" (click)="editForm(form)"><img src="../../assets/icons/edit.svg">Edit
+                        Template
                     </button>
                     <button (click)="openFormViewer(form)">
                         Submit</button>
@@ -31,7 +32,7 @@
     </div>
 
     <div class="footer">
-        <button (click)="showCreateModal = true">Create New Form</button>
+        <button [disabled]="!isAdmin" (click)="showCreateModal = true">Create New Form</button>
     </div>
     <app-modal *ngIf="showCreateModal" [title]="'Create a new form'" (closeModal)="showCreateModal=false">
         <input placeholder="Enter Form Name" #newForm required

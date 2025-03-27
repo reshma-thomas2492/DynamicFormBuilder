@@ -11,7 +11,8 @@
     </div>
     <div *ngIf="dynamicForm" class="drag-drop" cdkDropList id="dropZone" [cdkDropListData]="dynamicForm?.formControls"
         [cdkDropListConnectedTo]="['formBuilder']" (cdkDropListDropped)="drop($event)">
-        <div *ngIf="dynamicForm?.formControls.length==0" style="text-align: center;"><i>Drag and Drop controls here</i></div>
+        <div *ngIf="dynamicForm?.formControls.length==0" style="text-align: center;"><i>Drag and Drop controls here</i>
+        </div>
 
         <div *ngFor="let field of dynamicForm?.formControls; let i=index;" class="dropped-item" cdkDrag>
             <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
@@ -38,18 +39,31 @@
             <div> <label>Placeholder</label>
                 <input [(ngModel)]="customElement.helpText">
             </div>
+
+        </ng-container>
+        <ng-container *ngIf="customElement.type=='input'">
             <div class="validations"> <label>Required</label>
                 <input id="isRequired" type="checkbox" value='true' [(ngModel)]="customElement.validations.required" />
             </div>
-        </ng-container>
-        <ng-container *ngIf="customElement.type=='input'">
-            <div class="validations">
+            <!-- <div class="validations">
                 <label>Min-Length</label>
                 <input type="number" min="0" [(ngModel)]="customElement.validations.minLength">
-            </div>
+            </div> -->
             <div class="validations">
                 <label>Max-Length</label>
                 <input type="number" min="0" [(ngModel)]="customElement.validations.maxLength">
+            </div>
+        </ng-container>
+        <ng-container *ngIf="customElement.type=='checkbox'">
+            <div class="add-checkbox">
+                <button  (click)="addCheckbox(customElement.items)">Add Checkbox</button>
+
+                <div class="checkbox-holder" *ngFor="let item of customElement.items; let i=index">
+                    <img src='../../assets/icons/delete.svg' (click)="removeCheckbox(customElement.items,i)">
+
+                    <label>Name</label>
+                    <input [(ngModel)]="item.name">
+                </div>
             </div>
         </ng-container>
         <ng-container *ngIf="customElement.type=='select'">

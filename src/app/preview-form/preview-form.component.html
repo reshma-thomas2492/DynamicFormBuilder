@@ -14,6 +14,16 @@
                 <label [ngClass]="{'required':control.validations.required}">{{control.label}}</label>
                 <textarea [placeholder]="control.helpText" [formControlName]="control?.name"></textarea>
             </ng-container>
+            <ng-container *ngIf="control.type=='checkbox'" [formArrayName]="control.name">
+                <label [ngClass]="{'required':control.validations.required}">{{control.label}}</label>
+                <div class="d-flex">
+                    <label *ngFor="let c of control.items;let i=index" [formGroupName]="i">
+                        {{control.items[i].name}}<input type="checkbox"
+                            [formControlName]="control.items[i].name" /></label>
+                </div>
+            </ng-container>
+            <div class="errorMsg" *ngIf="submitted">
+                {{isValid(control)}} </div>
         </div>
         <button *ngIf="!isReadOnly" (click)="save()">Submit</button>
     </form>

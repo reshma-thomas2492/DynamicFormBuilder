@@ -3,9 +3,8 @@
         <h2>Dynamic Form Builder</h2>
         <div>
             <label for="name">Role</label>
-            <select name="name"  formControlName="role">
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+            <select name="name" formControlName="role" #role>
+                <option *ngFor="let role of userRoles"  [value]="role.isEditable">{{role.role}}</option>
             </select>
         </div>
         <div>
@@ -13,7 +12,7 @@
             <input type="password" placeholder="Enter Password" name="psw" required formControlName="password">
         </div>
         <div>
-            <button type="submit" [disabled]="!loginForm.valid" (click)="submit()">Login</button>
+            <button type="submit" [disabled]="!loginForm.valid" (click)="submit(role.value)">Login</button>
         </div>
     </form>
 </div>

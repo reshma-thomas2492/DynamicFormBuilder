@@ -26,6 +26,8 @@ export class FormBuilderComponent {
     private service: AppService) { }
 
   ngOnInit() {
+
+    console.log("jdddddddddddjkj")
     this.route.params.subscribe((params) => {
       this.formId = params['id'];
     });
@@ -77,4 +79,17 @@ export class FormBuilderComponent {
     this.showCustomElement = false;
     this.dynamicForm.formControls[this.customElementIndex] = this.customElement;
   }
+
+  addCheckbox(items: any) {
+    items.push({
+      "name": '',
+      "value": false
+    })
+
+  }
+
+  removeCheckbox(items:any,index:number){
+    items.splice(index,1);
+  }
 }
+

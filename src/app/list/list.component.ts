@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -13,15 +14,24 @@ export class ListComponent {
   showError: boolean = false;
   showFormSubmit: boolean = false;
   formSubmit: any;
+  isAdmin = false;
+  subscription!: Subscription;
   constructor(private router: Router, private service: AppService) {
   }
 
   ngOnInit() {
+    this.subscription = this.service.getUserRole().subscribe((data: any) => {
+      this.isAdmin = data;
+    })
     this.service.formTemplatesJSON.subscribe((data: any) => {
       this.formsList = data;
     })
+
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
   createForm(value: string) {
     if (!value || value == '')
       this.showError = true;
@@ -38,7 +48,7 @@ export class ListComponent {
     }
 
   }
-  openFormList(){
+  openFormList() {
     this.router.navigate(['/forms'])
   }
 
