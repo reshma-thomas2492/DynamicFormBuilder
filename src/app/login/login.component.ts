@@ -24,7 +24,7 @@ export class LoginComponent {
     })
     this.loginForm = new FormGroup({
       role: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required])
+      password: new FormControl(12345, [Validators.required])
 
     })
   }

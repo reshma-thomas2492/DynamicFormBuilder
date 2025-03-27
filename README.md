@@ -14,3 +14,6 @@ json-server --watch db.json
 ## Build
 
 Run `ng build -c "production` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Login
+## Admin/User Password can be anything
